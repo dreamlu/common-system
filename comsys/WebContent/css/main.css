@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+
+html{
+	height: 100%;
+}
+body{
+	margin:0px;
+	height: 100%;
+}
+#title{
+	width:100%;
+	height: 15%;
+	/* border:1px solid blue; */
+	background-color: #dddbd8;
+	border-radius: 15px;
+}
+#center{
+	width:100%;
+	height:100%;
+}
+#left_bar{
+	width:15%;
+	height:100%;
+	background-color: #e5dacf;
+	text-align: center;
+	border-radius: 15px;
+	float: left;
+}
+#main{
+	width:85%;
+	height:100%;
+	/* background-color: #e5ead7; */
+	border-radius: 15px;
+	float:left;
+}
+#list_data{
+	
+}
+/* 表格样式 */
+#list_data tr {
+	border-top-width: 5px;
+	border-top-style: solid;
+	border-top-color: rgb(230, 189, 189);
+}
+#list_data{
+	margin:10px;
+	border-radius: 20px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: rgb(230, 189, 189);
+}
+
+#list_data td{
+	padding: 15px 20px;
+	/* font-size: 12px; */
+	font-family: Verdana;
+	color: rgb(177, 106, 104);
+}
+
+#list_data tr:nth-child(even) {
+	background: rgb(238, 211, 210)
+}
+#list_data tr:nth-child(odd) {
+	background: #FFF
+}
+
+a{
+	text-decoration: none;
+}
+.drop{
+	margin-left:5px;
+}
