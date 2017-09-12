@@ -119,4 +119,14 @@ function submitTable(){
 //退出
 function drop(){
 	$.post("drop");
+<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
+=======
+}
+//搜索
+function search(){
+	alert();
+	$("#main").empty();
+	var data = $("#search").serialize();
+	$.post("globalSearch",data);
+>>>>>>> 2 commit
 }

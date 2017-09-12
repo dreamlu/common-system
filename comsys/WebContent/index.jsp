@@ -30,6 +30,23 @@
 		%>
 		<a href="#" onclick="addTable();">添加表</a>
 	</div>
+<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
+=======
+		<div id="ser">
+			<form id="search" method="post" onSubmit="search()" >
+				<input type="text" name="search">
+				<select name="tb_name">
+					<%
+					for(String tb_name:tbs){
+						%><option><%=JDBC.translate(tb_name) %>
+						</option><%
+					}
+					%>
+				</select>
+				<input type="button" value="搜索" onclick="search()">
+			</form>
+		</div>
+>>>>>>> 2 commit
 	<div id="main"> 
 	</div>
 </div>

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
     <wb-module deploy-name="news">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="news"/>
         <property name="java-output-path" value="/news/build/classes"/>
+=======
+    <wb-module deploy-name="comsys">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/comsys/build/classes"/>
+        <property name="context-root" value="comsys"/>
+>>>>>>> 2 commit
     </wb-module>
 </project-modules>
