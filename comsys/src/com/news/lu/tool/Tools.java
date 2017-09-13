@@ -3,6 +3,7 @@ package com.news.lu.tool;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -278,33 +279,37 @@ public class Tools {
 	//全局搜索
 	public static String search(String search_keyword, String tb_name) {
 		//tb_name = dbs_tb_name(tb_name);
-		StringBuffer  table = new StringBuffer(""); 
+		StringBuffer  table = new StringBuffer("");
+		table.append("<table id=\"list_data\">");
 		List<List> list = new LinkedList<List>();//存储查询出来的数据
 		//判断查询的表中每个字段（除了id）中是否含有该关键字
 		List<List> col_names = getColumnNames(tb_name);
 		if(col_names != null){
+			//添加标题行
+			table.append("<tr><td>id</td>");
+			for(int i= 0; i < col_names.size(); i++){
+				table.append("<td>"+JDBC.translate((String)col_names.get(i).get(0))+"</td>");
+			}
+			table.append("<td><a href=\"#\" class=\"add_data\">增加</a></tr>");
+			//获得符合条件的内容
 			for(List col_name : col_names){
-			String sql = "select *from " + tb_name + " where "+col_name.get(0)+" like '%" + search_keyword + "%'";
+			String sql = "select *from " + tb_name + " where `"+col_name.get(0)+"` like '%" + search_keyword + "%'";
 			List<List> ret = JDBC.list(sql);
-			//排除仅有title一行的数据,精妙的取巧～
+			
 			if(ret != null && ret.size() != 1){
+				ret.remove(0);
 				for(List ret2 : ret){
 					list.add(ret2);
 					}
 				}
 			}
 		}
-		
+		//取出重复行
+		HashSet h  =   new  HashSet(list);
+		list.clear(); 
+	    list.addAll(h);
 		if(list != null){
-			table.append("<table id=\"list_data\">");
-			//标题
-			List dataTitle = list.get(0);
-			table.append("<tr>");
-			for(int i= 0; i < dataTitle.size(); i++){
-				table.append("<td>"+JDBC.translate((String)dataTitle.get(i))+"</td>");
-			}
-			table.append("<td><a href=\"#\" class=\"add_data\">增加</a></tr>");
-			list.remove(0);
+			//list.remove(0);
 			//内容
 			for(List data : list){
 				table.append("<tr id=\""+data.get(0)+"\">");
@@ -314,8 +319,9 @@ public class Tools {
 				table.append("<td><a href=\"#\" class=\"update_data\">修改</a></td>"
 						+ "<td><a href=\"#\" class=\"delete_data\">删除</a></td></tr>");
 			}
-			table.append("</table>");
+			
 		}
+		table.append("</table>");
 		return table.toString();
 	}
 	/*//根据表的中文翻译成英文
