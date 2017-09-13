@@ -30,7 +30,7 @@ public class globalSearch extends HttpServlet {
 		String content = Tools.search(search_keyword,tb_name);
 		out.write(content);
 		
-		out.write("");
+		//out.write("");
 		out.close();
 	}
 

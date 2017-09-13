@@ -202,11 +202,7 @@ public class Tools {
 	//获得列名(可以在空表或非空表下查询)
 	public static List<List> getColumnNames(String tbname){ 
 		//指明是news数据库，防止user这类不同数据库重名查出多余数据
-<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
-		String sql = "SELECT column_name from information_schema.columns  WHERE TABLE_SCHEMA='news' and  table_name = '"+tbname+"'";
-=======
 		String sql = "SELECT column_name from information_schema.columns  WHERE TABLE_SCHEMA='comsys' and  table_name = '"+tbname+"'";
->>>>>>> 2 commit
 		List<List> list = JDBC.list(sql);
 		if(list != null){
 			list.remove(0);//移除字段名的字段名
@@ -279,23 +275,23 @@ public class Tools {
 		String sql = "update user set user_password=? where user_contact=?";
 		JDBC.executeUpdate(sql, pass, user_email);		
 	}
-<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
-=======
 	//全局搜索
 	public static String search(String search_keyword, String tb_name) {
+		//tb_name = dbs_tb_name(tb_name);
 		StringBuffer  table = new StringBuffer(""); 
-		List<List> list =null;//存储查询出来的数据
-		//判断查询的表中每个字段中是否含有该关键字
+		List<List> list = new LinkedList<List>();//存储查询出来的数据
+		//判断查询的表中每个字段（除了id）中是否含有该关键字
 		List<List> col_names = getColumnNames(tb_name);
 		if(col_names != null){
 			for(List col_name : col_names){
-			String sql = "select *from " + tb_name + " where "+col_name.get(0)+" like %" + search_keyword + "%";
+			String sql = "select *from " + tb_name + " where "+col_name.get(0)+" like '%" + search_keyword + "%'";
 			List<List> ret = JDBC.list(sql);
-			if(ret != null){
+			//排除仅有title一行的数据,精妙的取巧～
+			if(ret != null && ret.size() != 1){
 				for(List ret2 : ret){
 					list.add(ret2);
+					}
 				}
-			}
 			}
 		}
 		
@@ -322,5 +318,9 @@ public class Tools {
 		}
 		return table.toString();
 	}
->>>>>>> 2 commit
+	/*//根据表的中文翻译成英文
+	private static String dbs_tb_name(String tb_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 }

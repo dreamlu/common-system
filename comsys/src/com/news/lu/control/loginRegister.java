@@ -33,10 +33,7 @@ public class loginRegister extends HttpServlet {
 		
 		boolean b = false;
 		HttpSession session = request.getSession();
-<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
-=======
 		//登录或注册判断
->>>>>>> 2 commit
 		if(login.equals("login")){
 			List<Map<String, Object>> ret = Tools.login(name, password);
 			if(ret != null && ret.size() == 1) b = true;

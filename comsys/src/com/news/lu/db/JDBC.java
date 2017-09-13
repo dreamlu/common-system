@@ -200,10 +200,7 @@ public class JDBC {
     			it.remove();//删除权限外的表
     		}
     	}
-<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
-=======
     	
->>>>>>> 2 commit
     	/*for(int i = 0; i < ret.size(); i++){//这里size不断变化，会出错
     		if(!Tools.operate(user_id,ret.get(i))){
     			ret.re.remove(i);

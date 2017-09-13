@@ -119,14 +119,30 @@ function submitTable(){
 //退出
 function drop(){
 	$.post("drop");
-<<<<<<< 41c2b6e313996194461197a821c4e9d681069ae8
-=======
 }
-//搜索
-function search(){
-	alert();
+//搜索,用search()函数会和浏览器冲突,改名
+function globalSearch(){
+	//alert();
 	$("#main").empty();
-	var data = $("#search").serialize();
-	$.post("globalSearch",data);
->>>>>>> 2 commit
+	var search_key = $("#search_key").val();
+	var tb_name = $("#tb_name").val();
+	$.post("globalSearch",{"search":search_key,"tb_name":tb_name},function(response,status,xhr){
+		if(status == "success"){
+			$("#main").append(response);
+			
+			/*
+			 * 查询后的信息同样可以进行曾删改的操作
+			 */
+			/*$(".update_data").bind("click",function(event){
+				//alert(getId(event));
+				alterData(getId(event),tbname);
+			});
+			$(".delete_data").bind("click",function(event){
+				deleteData(getId(event),tbname);
+			});
+			$(".add_data").bind("click",function(event){
+				addData(tbname);
+			});*/
+		}
+	});
 }
