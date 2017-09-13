@@ -1,5 +1,5 @@
 # common system(通用后台系统生成器)
- 默认帐号root,密码root
+ 默认帐号root,密码root<br>
  基本的三张表，privilege(权限)、datadict(数据字典)、user(用户)，其他表均可以删除
  支持界面增加表
  支持基本的增删改查等操作
