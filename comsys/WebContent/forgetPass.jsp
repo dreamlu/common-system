@@ -7,7 +7,7 @@
 <title>忘记密码</title>
 </head>
 <body>
-请通过邮箱中的验证，正确后，将会将重置后的密码通过邮箱发送～
+请通过邮箱中的验证，正确后，将会获得重置后的密码～
 <form method="post" action="sendEmail">
 	昵称：<input type="text" name="user_name"><br>
 	邮箱：<input type="email" name="user_email">
