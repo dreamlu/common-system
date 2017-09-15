@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50719
 Source Host           : localhost:3306
-Source Database       : news
+Source Database       : comsys
 
 Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-09-12 16:46:42
+Date: 2017-09-15 10:35:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `datadict` (
   `name` varchar(30) DEFAULT NULL,
   `translate` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of datadict
@@ -39,6 +39,7 @@ INSERT INTO `datadict` VALUES ('8', 'user', '用户');
 INSERT INTO `datadict` VALUES ('9', 'comment', '评论');
 INSERT INTO `datadict` VALUES ('20', 'news_comments', '新闻评论');
 INSERT INTO `datadict` VALUES ('21', 'news_views', '浏览量');
+INSERT INTO `datadict` VALUES ('22', 'user_ban', '禁止');
 
 -- ----------------------------
 -- Table structure for privilege
@@ -49,7 +50,7 @@ CREATE TABLE `privilege` (
   `user_id` int(11) NOT NULL,
   `right` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of privilege
@@ -58,6 +59,8 @@ INSERT INTO `privilege` VALUES ('1', '1', 'admin');
 INSERT INTO `privilege` VALUES ('2', '1', 'user$operate');
 INSERT INTO `privilege` VALUES ('3', '16', 'user$operate');
 INSERT INTO `privilege` VALUES ('4', '17', 'user$operate');
+INSERT INTO `privilege` VALUES ('5', '19', 'user$operate');
+INSERT INTO `privilege` VALUES ('6', '17', 'tb_news$operate');
 
 -- ----------------------------
 -- Table structure for tb_baba
@@ -99,15 +102,16 @@ CREATE TABLE `tb_news` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `news_title` varchar(32) DEFAULT NULL,
   `news_content` text,
-  `news_views` int(11) NOT NULL,
+  `news_views` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_news
 -- ----------------------------
-INSERT INTO `tb_news` VALUES ('2', 'aa', '<p><img alt=\"smiley\" src=\"http://localhost:8080/news/ckeditor/plugins/smiley/images/regular_smile.png\" style=\"height:23px; width:23px\" title=\"smiley\" /><img alt=\"cool\" src=\"http://localhost:8080/news/ckeditor/plugins/smiley/images/shades_smile.png\" style=\"height:23px; width:23px\" title=\"cool\" /><img alt=\"devil\" src=\"http://localhost:8080/news/ckeditor/plugins/smiley/images/devil_smile.png\" style=\"height:23px; width:23px\" title=\"devil\" />sssssfs</p>\r\n', '0');
+INSERT INTO `tb_news` VALUES ('2', 'aa', '<p><img alt=\"laugh\" src=\"http://localhost:8080/comsys/ckeditor/plugins/smiley/images/teeth_smile.png\" style=\"height:23px; width:23px\" title=\"laugh\" /><img alt=\"no\" src=\"http://localhost:8080/comsys/ckeditor/plugins/smiley/images/thumbs_down.png\" style=\"height:23px; width:23px\" title=\"no\" />ssssfs</p>\r\n', '0');
 INSERT INTO `tb_news` VALUES ('3', '1', '<p style=\"text-align:center\">&quot;世界，你好!&quot;</p>\r\n\r\n<p style=\"text-align:center\"><img alt=\"\" src=\"upload/f147d254-6828-40d3-a870-49f0acb3597e.jpg\" style=\"height:481px; width:734px\" /></p>\r\n', '0');
+INSERT INTO `tb_news` VALUES ('4', '1', '<p>1</p>\r\n', '0');
 
 -- ----------------------------
 -- Table structure for user
@@ -119,13 +123,16 @@ CREATE TABLE `user` (
   `user_password` varchar(45) NOT NULL,
   `user_contact` varchar(30) DEFAULT NULL,
   `user_picture` varchar(255) DEFAULT NULL,
+  `user_ban` tinyint(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'root', '46ef3a30801e528983274772c4433fc49e97bf0a', '3147460271@qq.com', 'null');
-INSERT INTO `user` VALUES ('16', '111', '07946435ecb38811525116785d1976b9eaaff16c', '862362681@qq.com', 'null');
-INSERT INTO `user` VALUES ('17', 'user', '0c3a351b63e742f736060e9ccc67aabbbb811edf', null, null);
+INSERT INTO `user` VALUES ('1', 'root', '46ef3a30801e528983274772c4433fc49e97bf0a', '3147460271@qq.com', 'null', '0');
+INSERT INTO `user` VALUES ('16', '111', '1defff0d55516d32f5e164c067e8d69a20dbc63c', '862362681@qq.com', 'null', '0');
+INSERT INTO `user` VALUES ('17', 'user', '0c3a351b63e742f736060e9ccc67aabbbb811edf', null, null, '0');
+INSERT INTO `user` VALUES ('18', 'user2', '00a6f0fd2a64c8110e2089442ba317cbc9ef2d53', 'null', '', '1');
+INSERT INTO `user` VALUES ('19', 'user3', '89b6839b41721a0d3a01827b2a4804bcca21f84b', null, null, '0');
 SET FOREIGN_KEY_CHECKS=1;
