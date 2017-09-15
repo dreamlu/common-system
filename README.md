@@ -6,6 +6,7 @@
 <img src="https://github.com/Dreamlu/common-system/blob/master/comsys/1.png" alt="image" style="max-width:100%;"><br>
  支持全局搜索，根据选择的表进行关键自查询<br>
  text字段类型会激活ckeditor进行编辑，支持上传图片、表情等<br>
+ banid(拉黑)
  基本的注册登录（密码以md5+salt加密）<br>
  支持邮箱找回密码<br>
 <img src="https://github.com/Dreamlu/common-system/blob/master/comsys/2.png" alt="image" style="max-width:100%;"><br>

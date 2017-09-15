@@ -76,6 +76,10 @@ function mainLoad(tbname,pageNum){
 		//alert(response);
 		if(status == "success"){
 			//$("#main").append(response);
+			/*
+			 * 用户的及时禁止操作
+			 * $.post("drop?drop=ban");
+			 * */
 			$(".update_data").bind("click",function(event){
 				//alert(getId(event));
 				alterData(getId(event),tbname);
@@ -118,7 +122,7 @@ function submitTable(){
 }
 //退出
 function drop(){
-	$.post("drop");
+	$.post("drop?drop=drop");
 }
 //搜索,用search()函数会和浏览器冲突,改名
 function globalSearch(){

@@ -41,8 +41,10 @@ public class Tools {
 				String thishash = getHash(password, salt);
 				b = thishash.equals(pass);
 				if(b) {
-					sql = "select id from user where user_name=? and user_password=?";
+					sql = "select id,user_ban from user where user_name=? and user_password=?";
 					ret =  JDBC.executeQuery(sql, username, pass);
+					int i = (int)ret.get(0).get("user_ban");//禁止拉黑的名单登录操作
+					if( i != 0) ret = null;
 				}
 			}
 		}
@@ -184,7 +186,7 @@ public class Tools {
 		//list.remove(1);//删除数据留下字段名
 		List data = list.get(0);//获得字段名
 		//经过mysql插入测试，证明：
-		//插入或更新时，以字符型数据插入，即便时数值型也能插入，前提时字符型数字
+		//插入或更新时，以字符型数据插入，即便是数值型也能插入，前提时字符型数字
 		//从1开始,id不更新
 		for(int i = 1; i < data.size(); i++){
 			sql.append(data.get(i)+" = '"+fd_values[i-1]+"',");
@@ -247,16 +249,16 @@ public class Tools {
 	//添加数据
 	public static void addData(String tbname, String[] fd_values) {
 		StringBuffer sql = new StringBuffer("");
-		sql.append("insert "+tbname+"(");
+		sql.append("insert "+tbname+"(`");
 		
 		List<List> list = getColumnNames(tbname);
 		//字段名
 		for(List data : list){
 			for(Iterator it = data.iterator();it.hasNext();){
-				sql.append((String)it.next()+",");
+				sql.append((String)it.next()+"`,`");
 			}
 		}
-		sql.replace(sql.length()-1, sql.length(), "");
+		sql.replace(sql.length()-2, sql.length(), "");
 		sql.append(") values(");
 		//插入的值
 		for(String data : fd_values){
